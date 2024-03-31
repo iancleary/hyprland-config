@@ -37,7 +37,8 @@ Below is a flake, using `example-hostname`, to show how to consume this remote f
             ./configuration.nix
             ./hardware-configuration.nix
             inputs.hyprland-config.nixosModules.nixos
-            inputs.hyprland-config.nixosModules.home-manager
+            inputs.hyprland-config.nixosModules.home-manager # requires below home-manager setup for your user
+            ./home/username.nix # CHANGE ME...your home manager config that sets up your user
           ];
         };
       };
@@ -45,3 +46,5 @@ Below is a flake, using `example-hostname`, to show how to consume this remote f
 }
 
 ```
+
+> `inputs.hyprland-config.nixosModules.home-manager` needs your nixos-config to set up your user.
