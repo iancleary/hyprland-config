@@ -22,4 +22,17 @@
 
   home.file.".config/hypr/wofi.css".source = ./wofi.css;
   home.file.".config/hypr/wofi.css".target = ".config/hypr/wofi.css";
+
+  # TODO: Test this on a new user setup
+  systemd.user.services.launch-hyprland = {
+    Unit = {
+      Description = "Start Hyprland On User Start";
+    };
+    Install = {
+      WantedBy = [ "default.target" ];s
+    };
+    Service = {
+      ExecStart = "${pkgs.hyprland}/bin/Hyprland";
+    };
+  };
 }
