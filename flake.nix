@@ -4,14 +4,12 @@
   inputs = {
     nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
     
-    # systems.url = "github:nix-systems/default-linux";
+    hyprland.url = "github:hyprwm/Hyprland";
 
-    # hyprland.url = "github:hyprwm/Hyprland";
-
-    # hyprland-contrib = {
-    #   url = "github:hyprwm/contrib";
-    #   inputs.nixpkgs.follows = "nixpkgs";
-    # };
+    hyprland-contrib = {
+      url = "github:hyprwm/contrib";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
 
   outputs = inputs @ {
@@ -20,13 +18,8 @@
     ...
   }: 
   {
-    nixosModules.default = { pkgs, ... }:
-      {
-        environment.systemPackages = with pkgs; [
-          hello
-        ];
-      };
-
-    # nixosModules.default = import ./hyprland.nix inputs;
+    nixosModules.default = import ./modules/nixos;
+    nixosModules.nixos = import ./modules/nixos;
+    nixosModules.home-manager = import ./modules/home-manager;
   };
 }
